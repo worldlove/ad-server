@@ -16,7 +16,7 @@ router.get("/", function(req, res, next) {
 })
 // 注册 登录
 router.post('/signup', function(req, res, next) {
-	const from = req.body;
+	const form = req.body;
 	if (req.session.captcha !== form.captcha.toUpperCase()) {
 		return res.json({OK: false, "message": "注册失败 验证码错误 captcha: "+form.captcha});
 	}
@@ -29,9 +29,20 @@ router.post('/signup', function(req, res, next) {
 	user.save((err, doc, num) => {
 		if (err) {
 			console.log("Err: ", err);
-			return res.json({OK: false, message: err});
+			let message = err.message;
+			if (err.message.indexOf("duplicate key error") >= 0) {
+				message = "用户名已经存在";
+			} else if (err.ValidationError) {
+				message = err.ValidationError
+			}
+			return res.json({OK: false, message: message});
 		}
-	  res.json({ OK: true, doc: doc });
+		req.session.username = doc.username;
+		req.session.userId = doc._id;
+	  res.json({ OK: true, user: {
+	  	_id: doc._id,
+	  	username: doc.username,
+	  }});
 	});
 });
 router.post('/login', function(req, res, next) {
