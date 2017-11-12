@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const UserModel = require("./user");
+const CategoryModel = require("./category");
+const ProductModel = require("./product");
 // const ArticalModel = require("./artical");
 // const CommentModel = require("./comment");
 const hmac = require("../utils/hash");
@@ -33,5 +35,7 @@ UserModel.count()
 });
 
 exports.UserModel = UserModel;
+exports.CategoryModel = CategoryModel;
+exports.ProductModel = ProductModel;
 // exports.ArticalModel = ArticalModel;
 // exports.CommentModel = CommentModel;
