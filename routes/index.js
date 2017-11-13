@@ -7,12 +7,7 @@ const getCcap = require("../utils/ccap");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.send(`<html><body>
-		<h1>商城管理系统后端API</h1>
-		<h2>欢迎访问</h2>
-		<h2>注册：/signup</h2>
-		<h2>登录：/login</h2>
-	<body></html>`);
+  res.render("index");
 })
 // 注册 登录
 router.post('/signup', function(req, res, next) {

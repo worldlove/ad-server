@@ -7,7 +7,10 @@ category.get("/", function(req, res, next) {
   CategoryModel
     .find()
     .then((docs) => {
-      return res.json(docs);
+      return res.json({
+        OK: true,
+        docs: docs,
+      });
     })
     .catch((err) => {
       return res.josn({OK: false, message: "服务器错误"})
@@ -22,7 +25,10 @@ category.get("/:level", function(req, res, next) {
   CategoryModel
     .find({level: level})
     .then((docs) => {
-      return res.json(docs);
+      return res.json({
+        OK: true,
+        docs: docs,
+      });
     })
     .catch((err) => {
       return res.josn({OK: false, message: "服务器错误"})

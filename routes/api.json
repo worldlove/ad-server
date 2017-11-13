@@ -1,0 +1,112 @@
+[
+  {
+    "name": "注册",
+    "router": "/signup",
+    "method": "POST",
+    "body": {
+      "username": "string",
+      "password": "string",
+      "captcha": "string",
+      "phone": "string",
+      "email": "string"
+    },
+    "response": {
+      "OK": "bool",
+      "user": {
+        "username": "string",
+        "_id": "string",
+        "createAt": "Datetime"
+      }
+    }
+  },
+  {
+    "name": "登录",
+    "router": "/login",
+    "method": "POST",
+    "body": {
+      "username": "string",
+      "password": "string",
+      "captcha": "string"
+    },
+    "response": {
+      "OK": "bool",
+      "user": {
+        "username": "string",
+        "_id": "string",
+        "createAt": "Datetime"
+      }
+    }
+  },
+  {
+    "name": "退出",
+    "router": "/logout",
+    "method": "GET",
+    "response": {
+      "OK": "bool"
+    }
+  },
+  {
+    "name": "获取验证码",
+    "router": "/captcha",
+    "method": "GET",
+    "response": {
+      "OK": "bool",
+      "captcha": "string"
+    }
+  },
+  {
+    "name": "分类管理",
+    "router": "/manage/cetagory",
+    "children": [
+      {
+        "name": "获取全部分类",
+        "method": "GET",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]"
+        }
+      },
+      {
+        "name": "按等级获取分类",
+        "method": "GET",
+        "path": "/:level",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]"
+        }
+      },
+      {
+        "name": "新增分类",
+        "method": "POST",
+        "body": {
+          "name": "string",
+          "level": "number",
+          "children": "array[]"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "修改分类",
+        "method": "PUT",
+        "body": {
+          "name": "string",
+          "level": "number",
+          "children": "array[]"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "删除分类",
+        "method": "DELETE",
+        "path": "/:id",
+        "response": {
+          "OK": "bool"
+        }
+      },
+    ]
+  }
+]
