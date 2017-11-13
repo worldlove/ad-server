@@ -91,7 +91,7 @@ category.delete("/:id", function(req, res, next) {
 
 const product = express.Router();
 
-product.get("/", function(req, res, next) => {
+product.get("/", function(req, res, next) {
   const query = req.query;
   ProductModel
     .find(query)
@@ -102,7 +102,7 @@ product.get("/", function(req, res, next) => {
 
 });
 
-product.add("/", function(req, res, next) {
+product.post("/", function(req, res, next) {
   const form = req.body;
   const product = new ProductModel(form);
   product.save(function(err, doc, num) {
