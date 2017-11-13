@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const captcha = require("./routes/captcha");
-const {category} = require("./routes/manage");
+const {category, product} = require("./routes/manage");
 
 const app = express();
 
@@ -60,6 +60,8 @@ if (app.get("env") === "development") {
 app.use('/', index);
 app.use("/captcha", captcha);
 app.use("/manage/category", category);
+app.use("/manage/product", product);
+app.use("/upload", );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

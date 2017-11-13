@@ -1,5 +1,5 @@
 const express = require("express");
-const {CategoryModel} = require("../models");
+const {CategoryModel, ProductModel} = require("../models");
 
 const category = express.Router();
 
@@ -80,10 +80,78 @@ category.delete("/:id", function(req, res, next) {
     .remove({_id: id})
     .then((doc) => {
       console.log("OK,", doc);
+      return res.json({OK: true});
     })
     .catch((err) => {
       console.log("Err: ", err);
+      return res.json({OK: false, message: "服务器错误"});
+    })
+})
+
+
+const product = express.Router();
+
+product.get("/", function(req, res, next) => {
+  const query = req.query;
+  ProductModel
+    .find(query)
+    .select()
+    .then((docs) => {
+      return res.json(docs);
+    })
+
+});
+
+product.add("/", function(req, res, next) {
+  const form = req.body;
+  const product = new ProductModel(form);
+  product.save(function(err, doc, num) {
+    if (err) {
+      let message;
+      console.log(err);
+      if (err.message.indexOf("duplicate key error") >= 0) {
+        message = "分类名称已经存在";
+      } else if (err.ValidationError) {
+        message = err.ValidationError
+      }
+      return res.json({OK: false, message: message});
+    }
+    return res.json({OK: true})
+  })
+})
+
+product.put("/", function(req, res, next) {
+  const form = req.body;
+  ProductModel
+    .findByIdAndUpdate(form._id, {$set: form})
+    .then((doc, err, num)=>{
+      console.log("OK", doc, err, num);
+      res.json({OK: true})
+    })
+    .catch((err) => {
+      if (err.message.indexOf("duplicate key error") >= 0) {
+        message = "分类名称已经存在";
+      } else if (err.ValidationError) {
+        message = err.ValidationError
+      }
+      return res.json({OK: false, message: message});
+    })
+})
+
+
+product.delete("/:id", function(req, res, next) {
+  const id = req.params.id;
+  CategoryModel
+    .remove({_id: id})
+    .then((doc) => {
+      console.log("OK,", doc);
+      return res.json({OK: true});
+    })
+    .catch((err) => {
+      console.log("Err: ", err);
+      return res.json({OK: false, message: "服务器错误"});
     })
 })
 
 exports.category = category;
+exports.product = product;
