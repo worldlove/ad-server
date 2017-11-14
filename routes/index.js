@@ -4,10 +4,11 @@ const { UserModel } = require("../models");
 const hmac = require("../utils/hash");
 //const getCcap = require("../utils/getCaptcha");
 const getCcap = require("../utils/ccap");
+const apis = require("./api.json");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
-  res.render("index");
+  res.render("index", {apis});
 })
 // 注册 登录
 router.post('/signup', function(req, res, next) {

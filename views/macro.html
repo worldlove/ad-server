@@ -1,0 +1,13 @@
+{% macro ulobj(name, value) %}
+{% if value.toString() === "[object Object]" %}
+<li>{{ name }} : -
+<ul>
+  {% for key, value in value %}
+  <li>{{ key }}: {{ value }}</li>
+  {% endfor %}
+</ul>
+</li>
+{% else %}
+<li>{{ name }} : {{ value }}</li>
+{% endif %}
+{% endmacro %}

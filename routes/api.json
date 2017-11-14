@@ -106,7 +106,89 @@
         "response": {
           "OK": "bool"
         }
+      }
+    ]
+  },
+  {
+    "name": "商品管理",
+    "router": "/manage/product",
+    "children": [
+      {
+        "name": "按条件查找商品",
+        "method": "GET",
+        "path": "query",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]"
+        }
       },
+      {
+        "name": "按id获取单个商品",
+        "method": "GET",
+        "path": "/:id",
+        "response": {
+          "OK": "bool",
+          "doc": {
+            "name": "string",
+            "description": "string",
+            "price": "number",
+            "storage": "number",
+            "category": "string",
+            "unit": "string",
+            "tag": "array[string]",
+            "images": "array[string]",
+            "createAt": "datetime",
+            "info": "string",
+            "status": "bool"
+          }
+        }
+      },
+      {
+        "name": "新增商品",
+        "method": "POST",
+        "body": {
+          "name": "string",
+          "description": "string",
+          "price": "number",
+          "storage": "number",
+          "category": "string",
+          "unit": "string",
+          "images": "array[string]",
+          "tag": "array[string]",
+          "info": "string",
+          "status": "bool"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "修改商品",
+        "method": "PUT",
+        "body": {
+          "name": "string",
+          "description": "string",
+          "price": "number",
+          "storage": "number",
+          "category": "string",
+          "unit": "string",
+          "images": "array[string]",
+          "tag": "array[string]",
+          "info": "string",
+          "status": "bool"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "删除商品",
+        "method": "DELETE",
+        "path": "/:id",
+        "response": {
+          "OK": "bool"
+        }
+      }
     ]
   }
 ]

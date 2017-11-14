@@ -103,9 +103,23 @@ product.get("/", function(req, res, next) {
     .find(query)
     .select()
     .then((docs) => {
-      return res.json(docs);
-    })
-
+      res.json ({
+        OK: true,
+        docs: docs
+      });
+    });
+});
+product.get("/:id", function(req, res, next) {
+  const id = req.params.id;
+  ProductModel
+    .findById(id)
+    .select()
+    .then((doc) => {
+      res.json ({
+        OK: true,
+        doc: doc
+      });
+    });
 });
 
 product.post("/", function(req, res, next) {

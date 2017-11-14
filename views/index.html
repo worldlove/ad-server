@@ -1,9 +1,82 @@
 {% extends "./layout.html" %}
+{% import "./macro.html" as macro %}
 
 {% block left %}
-{{ super() }}
+<div id="nav">
+  {% for api in apis %}
+  <h3
+    onClick="clickNav('{{api.router}}')"
+  >{{ api.name }} : {{ api.router }}</h3>
+  {% endfor %}
+</div>
 {% endblock %}
 
 {% block right %}
+<div id="right">
 <h1>接口数据文档</h1>
+  {% for api in apis %}
+  <div id="{{api.router}}"/>
+  <h3 value="{{api.router}}" key="{{api.router}}"
+  >{{ api.name }} : {{ api.router }}</h3>
+  {% if api.children %}
+    {% for ap in api.children %}
+    <div style="margin-left: 20px;" class="api">
+    <h4>Name: {{ap.name}}</h4>
+    <h4>Method: {{ap.method}}</h4>
+    {% if ap.path %}
+        <h4>Path: {{ap.path}}</h4>
+    {% endif %}
+    {% if ap.body %}
+        <h4>Body: -</h4>
+        <ul>
+            {% for key, value in ap.body %}
+              {{ macro.ulobj(key, value) }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if ap.response %}
+        <h4>Response: -</h4>
+        <ul>
+            {% for key,value in ap.response %}
+              {{ macro.ulobj(key, value) }}
+            {% endfor %}
+        </ul>
+        <hr style="width: 50%"/>
+    {% endif %}
+    </div>
+    {% endfor %}
+  {% else %}
+    <div style="margin-left: 20px;" class="api">
+    <h4>Name: {{api.name}}</h4>
+    <h4>Method: {{api.method}}</h4>
+    {% if api.path %}
+        <h4>Path: {{api.path}}</h4>
+    {% endif %}
+    {% if api.body %}
+        <h4>Body: -</h4>
+        <ul>
+            {% for key, value in api.body %}
+              {{ macro.ulobj(key, value) }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if api.response %}
+        <h4>Response: -</h4>
+        <ul>
+            {% for key,value in api.response %}
+              {{ macro.ulobj(key, value) }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </div>
+    <hr/>
+  {% endif %}
+{% endfor %}
+</div>
+<script type="text/javascript">
+ function clickNav(value) {
+   console.log(value);
+   document.getElementById(value).scrollIntoView();
+ }
+</script>
 {% endblock %}

@@ -7,20 +7,44 @@
     <title>鲤鱼IT</title>
   </head>
   <body style="padding: 0;margin: 0">
-    <div style="padding: 0 20px; width:30%;float:left; min-height: 700px; border-right: 2px solid #aaa;box-sizing: border-box;">
-    {% block left %}
-    <h1>商城管理系统后端API</h1>
-    <h2>注册： /signup</h2>
-    <h2>登录： /login</h2>
-    <h2>退出： /logout</h2>
-    <h2>获取验证码： /captcha</h2>
-    <h2>分类管理： /category</h2>
-    <h2>商品管理： /product</h2>
-    {% endblock %}
+    <style type="text/css">
+     #nav h3 {
+       cursor: pointer
+     }
+     #nav h3:hover {
+       color: #223377;
+     }
+     #right {
+       position: relative;
+     }
+     #right .api hr {
+       width: 50%
+       left: 20px;
+       margin: 10px 0;
+     }
+     h4 {
+       padding: 3px 10px;
+       margin: 0;
+     }
+     h3 {
+       padding: 6px 4px;
+       margin: 0;
+     }
+    </style>
+    <div style="padding: 0 20px; width:30%;float:left; min-height: 700px;box-sizing: border-box; position: fixed">
+      <h2>商城管理系统后端API</h2>
+      {% block left %}
+      <h2>注册： /signup</h2>
+      <h2>登录： /login</h2>
+      <h2>退出： /logout</h2>
+      <h2>获取验证码： /captcha</h2>
+      <h2>分类管理： /category</h2>
+      <h2>商品管理： /product</h2>
+      {% endblock %}
     </div>
-    <div style="width: 70%; float: right; padding: 0 20px; box-sizing: border-box">
-    {% block right %}
-    {% endblock %}
+    <div style="width: 70%; float: right; padding: 0 20px; box-sizing: border-box; border-left: 2px solid #aaa">
+      {% block right %}
+      {% endblock %}
     </div>
   </body>
 </html>
