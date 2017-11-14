@@ -129,6 +129,7 @@
         "response": {
           "OK": "bool",
           "doc": {
+            "_id": "string",
             "name": "string",
             "description": "string",
             "price": "number",
