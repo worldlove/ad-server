@@ -247,16 +247,21 @@
         "method": "GET",
         "response": {
           "OK": "bool",
-          "docs": "array[objects]"
+          "docs": "array[object]",
+          "docs-object": {
+            "_id": "objectId",
+            "num": "number",
+            "product": "productObj"
+          }
         }
       },
       {
         "name": "添加购物车",
         "method": "POST",
         "body": {
+          "type": "Array",
           "pid": "ObjectId",
-          "num": "number",
-          "type": "Array"
+          "num": "number"
         },
         "response": {
           "OK": "bool"
