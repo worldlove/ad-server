@@ -110,6 +110,52 @@
     ]
   },
   {
+    "name": "标签管理",
+    "router": "/manage/tag",
+    "children": [
+      {
+        "name": "获取全部标签",
+        "method": "GET",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]"
+        }
+      },
+      {
+        "name": "新增标签",
+        "method": "POST",
+        "body": {
+          "name": "string",
+          "primary": "number",
+          "children": "array[string]"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "修改标签",
+        "method": "PUT",
+        "body": {
+          "name": "string",
+          "primary": "number",
+          "children": "array[string]"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "删除标签",
+        "method": "DELETE",
+        "path": "/:id",
+        "response": {
+          "OK": "bool"
+        }
+      }
+    ]
+  },
+  {
     "name": "商品管理",
     "router": "/manage/product",
     "children": [
@@ -191,5 +237,39 @@
         }
       }
     ]
+  },
+  {
+    "name": "购物车管理",
+    "router": "shoppingcart",
+    "children": [
+      {
+        "name": "获取购物车",
+        "method": "GET",
+        "response": {
+          "OK": "bool",
+          "docs": "array[objects]"
+        }
+      },
+      {
+        "name": "添加购物车",
+        "method": "POST",
+        "body": {
+          "pid": "ObjectId",
+          "num": "number",
+          "type": "Array"
+        },
+        "response": {
+          "OK": "bool"
+        }
+      },
+      {
+        "name": "删除购物车商品",
+        "method": "DELETE",
+        "path": "/:id",
+        "response": {
+          "OK": "bool"
+        }
+      }
+    ] 
   }
 ]
