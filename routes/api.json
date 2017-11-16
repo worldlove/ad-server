@@ -240,7 +240,7 @@
   },
   {
     "name": "购物车管理",
-    "router": "shoppingcart",
+    "router": "/shoppingcart",
     "children": [
       {
         "name": "获取购物车",
