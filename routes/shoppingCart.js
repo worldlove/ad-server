@@ -25,10 +25,12 @@ cart.get("/", function(req, res, next) {
           num: carts[i].num
         });
       }
+      setTimeout(() => {
       res.json({
         OK: true,
         docs: resData
       })
+      }, 1000);
     })
   }).catch((err) => {
     res.json({
@@ -66,7 +68,7 @@ cart.post("/", function(req, res, next) {
         })
       }
       console.log("doc", doc)
-      res.json({OK: true});
+      res.json({OK: true, count: doc.shoppingCart.length});
     })
   })
 })
