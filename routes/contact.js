@@ -6,9 +6,9 @@ const contact = express.Router();
 
 contact.all("/*", function(req, res, next) {
   if (!req.session.userId) {
-    const id = "5a04093df5bccc25355abc11"
-    req.session.userId = id
-    //return res.status(401).send("auth failure, 验证失败，需要登录");
+    /* const id = "5a04093df5bccc25355abc11"
+     * req.session.userId = id*/
+    return res.status(401).send("auth failure, 验证失败，需要登录");
   }
   next();
 })
