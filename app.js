@@ -18,6 +18,7 @@ const captcha = require("./routes/captcha");
 const manage = require("./routes/manage/index");
 const upload = require("./routes/upload");
 const shoppingCart = require('./routes/shoppingCart');
+const contact = require("./routes/contact");
 
 
 app.use(session({
@@ -79,6 +80,7 @@ app.use("/captcha", captcha);
 app.use("/manage", manage);
 app.use("/upload", upload);
 app.use("/shoppingcart", shoppingCart);
+app.use("/contact", contact);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

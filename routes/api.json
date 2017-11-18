@@ -275,6 +275,107 @@
           "OK": "bool"
         }
       }
-    ] 
+    ]
+  },
+  {
+    "name": "联系人管理",
+    "router": "/contact",
+    "children": [
+      {
+        "name": "获取全部联系人",
+        "method": "GET",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]",
+          "docs-object": {
+            "_id": "objectId",
+            "contact": "string",
+            "phone": "string",
+            "address": "string",
+            "default": "bool",
+            "createAt": "time"
+          }
+        }
+      },
+      {
+        "name": "增加联系人",
+        "method": "POST",
+        "body": {
+          "contact": "string",
+          "phone": "string",
+          "address": "string",
+          "default": "bool"
+        },
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]",
+          "docs-object": {
+            "_id": "objectId",
+            "contact": "string",
+            "phone": "string",
+            "address": "string",
+            "default": "bool",
+            "createAt": "time"
+          }
+        }
+      },
+      {
+        "name": "修改联系人",
+        "method": "PUT",
+        "body": {
+          "id": "objectId",
+          "contact": "string",
+          "phone": "string",
+          "address": "string",
+          "default": "bool"
+        },
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]",
+          "docs-object": {
+            "_id": "objectId",
+            "contact": "string",
+            "phone": "string",
+            "address": "string",
+            "default": "bool",
+            "createAt": "time"
+          }
+        }
+      },
+      {
+        "name": "删除联系人",
+        "method": "DELETE",
+        "path": "/:id",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]",
+          "docs-object": {
+            "_id": "objectId",
+            "contact": "string",
+            "phone": "string",
+            "address": "string",
+            "default": "bool",
+            "createAt": "time"
+          }
+        }
+      },
+      {
+        "name": "设置默认联系人",
+        "method": "GET",
+        "path": "/:id",
+        "response": {
+          "OK": "bool",
+          "docs": "array[object]",
+          "docs-object": {
+            "_id": "objectId",
+            "contact": "string",
+            "phone": "string",
+            "address": "string",
+            "default": "bool",
+            "createAt": "time"
+          }
+        }
+      }
+    ]
   }
 ]

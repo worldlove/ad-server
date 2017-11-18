@@ -14,6 +14,29 @@ const CartSchema = mongoose.Schema({
   }
 })
 
+const AddressSchema = mongoose.Schema({
+  contact: {
+    type: String,
+    required: true
+  },
+  default: {
+    type: Boolean,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  createAt: {
+    type: Date,
+    default: Date.now
+  }
+})
+
 const UserSchema = mongoose.Schema({
   username: {
 	type: String,
@@ -36,12 +59,17 @@ const UserSchema = mongoose.Schema({
     type: [CartSchema],
     default: [],
   },
+  address: {
+    type:[AddressSchema],
+    default: [],
+  },
   createAt: {
 	type: Date,
 	default: Date.now
   },
   avatar: String,
 });
+
 
 const UserModel = mongoose.model("user", UserSchema, "user");
 
