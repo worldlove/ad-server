@@ -5,6 +5,9 @@ const {UserModel} = require("../models");
 const contact = express.Router();
 
 contact.all("/*", function(req, res, next) {
+  if (req.method === "OPTIONS") {
+    return res.send("ok")
+  }
   if (!req.session.userId) {
     /* const id = "5a04093df5bccc25355abc11"
      * req.session.userId = id*/
