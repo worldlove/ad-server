@@ -5,9 +5,15 @@ const hmac = require("../utils/hash");
 //const getCcap = require("../utils/getCaptcha");
 const getCcap = require("../utils/ccap");
 const apis = require("./api.json");
+const fs = require("fs");
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
+	const index = fs.readFileSync("../public/index.html");
+	res.send(index);
+})
+/* GET doc page. */
+router.get("/doc", function(req, res, next) {
   res.render("index", {apis});
 })
 // 注册 登录
