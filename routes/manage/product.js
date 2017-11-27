@@ -7,7 +7,7 @@ product.get("/", function(req, res, next) {
   const query = req.query;
   ProductModel
     .find(query)
-    .select()
+    .select({id: 1, name: 1, image: 1, price: 1})
     .then((docs) => {
       res.json ({
         OK: true,
@@ -31,6 +31,7 @@ product.get("/:id", function(req, res, next) {
 product.post("/", function(req, res, next) {
   const form = req.body;
   const product = new ProductModel(form);
+  product.image = form.images[0];
   product.save(function(err, doc, num) {
     if (err) {
       let message;

@@ -6,10 +6,10 @@ const upload = express.Router();
 // 本机测试
 //const SERVER = "http://localhost:3000";
 // 教室服务器地址
-// const SERVER = "http://192.168.1.210:3000";
+const SERVER = "http://192.168.1.210:3000";
 // 生产环境
 // const SERVER = "/";
-const SERVER = process.env.SERVER || "http://192.168.1.210:3000";
+//const SERVER = process.env.SERVER || "http://192.168.1.210:3000";
 
 const uploadMid = multer({dest: "public/images"})
 

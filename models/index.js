@@ -8,7 +8,7 @@ const OrderModel = require("./order");
 // const CommentModel = require("./comment");
 const hmac = require("../utils/hash");
 
-const url = "mongodb://localhost:27017/blog";
+const url = "mongodb://localhost:27017/weixin";
 
 mongoose.Promise = global.Promise;
 

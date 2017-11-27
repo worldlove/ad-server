@@ -60,19 +60,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// if (app.get("env") === "development") {
-//   app.use(function(req, res, next) {
-//     if (process.env.SERVER) {
-// 	  res.append("Access-Control-Allow-Origin", "http://localhost:3001");
-//     } else {
-// 	  res.append("Access-Control-Allow-Origin", "http://localhost:3000");
-//     } 
-// 	res.append("Access-Control-Allow-Headers", "Content-Type, X-Requested-With");
-// 	res.append("Access-Control-Allow-Credentials", true);
-// 	res.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-// 	next();
-//   });
-// }
+if (app.get("env") === "development") {
+  app.use(function(req, res, next) {
+    if (process.env.SERVER) {
+ 	  res.append("Access-Control-Allow-Origin", "http://localhost:3001");
+    } else {
+ 	  res.append("Access-Control-Allow-Origin", "http://localhost:3000");
+    } 
+ 	res.append("Access-Control-Allow-Headers", "Content-Type, X-Requested-With");
+ 	res.append("Access-Control-Allow-Credentials", true);
+ 	res.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+ 	next();
+  });
+}
 
 app.use('/', index);
 app.use("/captcha", captcha);
